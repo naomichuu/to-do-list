@@ -67,7 +67,7 @@ app.get("/",function(req,res){
     res.redirect("/");
     }else{
 
-    res.render("list",{listTitle:"Today",newListItem:foundItem});
+    res.render("list",{listTitle:day,newListItem:foundItem});
   }
 });
 
@@ -110,7 +110,7 @@ app.post("/",function(req,res){
   });
 
 
-  if(listName === "Today"){
+  if(listName === day){
 
   item.save();
 
@@ -137,7 +137,7 @@ app.post("/",function(req,res){
 app.post("/delect",function(req,res){
   const checkItemId = req.body.checkbox;
   const listName = req.body.listName;
-  if(listName === "Today" ){
+  if(listName === day){
   Item.findByIdAndRemove(checkItemId,function(err){
     if(!err){
       console.log("success delect");
